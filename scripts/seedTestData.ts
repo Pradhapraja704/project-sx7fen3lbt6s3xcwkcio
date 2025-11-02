@@ -22,12 +22,36 @@ const testUsers: TestUser[] = [
 async function seedTestData() {
   console.log('🌱 Starting to seed test data...');
 
+  // Check for environment variables
+  const appId = process.env.VITE_APP_ID;
+  const baseUrl = process.env.VITE_SUPERDEV_BASE_URL;
+
+  if (!appId || !baseUrl) {
+    console.log('⚠️  Environment variables not found. Creating manual setup instructions...');
+    console.log('\n📋 To create test accounts manually:');
+    console.log('1. Start the application with: npm run dev');
+    console.log('2. Navigate to http://localhost:8080/register');
+    console.log('3. Create the following accounts:');
+    console.log('');
+    console.log('┌─────────────────────────────────────────────────┐');
+    console.log('│ Email                 │ Password    │ Name      │');
+    console.log('├─────────────────────────────────────────────────┤');
+
+    for (const user of testUsers) {
+      console.log(`│ ${user.email.padEnd(21)} │ ${user.password.padEnd(10)} │ ${user.name.padEnd(9)} │`);
+    }
+
+    console.log('└─────────────────────────────────────────────────┘');
+    console.log('\n💡 After creating these accounts, you can use them to test the application!');
+    return;
+  }
+
   // Initialize Superdev client
   const superdevClient = createSuperdevClient({
-    appId: process.env.VITE_APP_ID || '',
+    appId: appId,
     requiresAuth: false,
-    baseUrl: process.env.VITE_SUPERDEV_BASE_URL || '',
-    loginUrl: `${process.env.VITE_SUPERDEV_BASE_URL}/auth/app-login?app_id=${process.env.VITE_APP_ID}`,
+    baseUrl: baseUrl,
+    loginUrl: `${baseUrl}/auth/app-login?app_id=${appId}`,
   });
 
   try {
