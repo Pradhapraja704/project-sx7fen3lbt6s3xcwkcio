@@ -75,7 +75,7 @@ Return only the refined text without any additional explanation or quotes.`,
   };
 
   return (
-    <div className="border-t border-gray-200 bg-white/50 backdrop-blur-sm p-4">
+    <div className="border-t border-[#333] bg-[#2d2d2d] p-4">
       <div className="flex items-end space-x-3">
         {/* Message Input */}
         <div className="flex-1">
@@ -84,11 +84,11 @@ Return only the refined text without any additional explanation or quotes.`,
             onChange={(e) => setMessage(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Type your message..."
-            className="min-h-[44px] max-h-32 resize-none border-gray-300 focus:border-blue-500 focus:ring-blue-500 rounded-xl"
+            className="min-h-[44px] max-h-32 resize-none border-[#444] bg-[#1a1a1a] text-white placeholder:text-[#666] focus:border-[#4a9eff] focus:ring-[#4a9eff] rounded-xl"
             rows={1}
           />
         </div>
-        
+
         {/* Action Buttons */}
         <div className="flex space-x-2">
           {/* Refine Button */}
@@ -97,33 +97,33 @@ Return only the refined text without any additional explanation or quotes.`,
             disabled={!message.trim() || isRefining}
             variant="outline"
             size="icon"
-            className="rounded-xl border-purple-200 hover:border-purple-400 hover:bg-purple-50 transition-all duration-200"
+            className="rounded-xl border-[#4a9eff] hover:border-[#3a8eef] hover:bg-[#4a9eff]/10 transition-all duration-200"
             title="Refine with AI"
           >
             {isRefining ? (
-              <Loader2 className="h-4 w-4 animate-spin text-purple-600" />
+              <Loader2 className="h-4 w-4 animate-spin text-[#4a9eff]" />
             ) : (
-              <Sparkles className="h-4 w-4 text-purple-600" />
+              <Sparkles className="h-4 w-4 text-[#4a9eff]" />
             )}
           </Button>
-          
+
           {/* Send Button */}
           <Button
             onClick={handleSend}
             disabled={!message.trim()}
-            className="rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-200"
+            className="rounded-xl bg-[#4a9eff] hover:bg-[#3a8eef] text-white transition-all duration-200"
             size="icon"
           >
             <Send className="h-4 w-4" />
           </Button>
         </div>
       </div>
-      
+
       {/* Helper Text */}
-      <div className="mt-2 flex items-center justify-between text-xs text-gray-500">
+      <div className="mt-2 flex items-center justify-between text-xs text-[#999999]">
         <span>Press Enter to send, Shift+Enter for new line</span>
         <span className="flex items-center space-x-1">
-          <Sparkles className="h-3 w-3" />
+          <Sparkles className="h-3 w-3 text-[#4a9eff]" />
           <span>Click Refine to improve your text with AI</span>
         </span>
       </div>
