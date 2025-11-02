@@ -1,22 +1,21 @@
 import { useState } from 'react';
-import { Send, Sparkles, Loader2, Paperclip, Smile } from 'lucide-react';
+import { Send, Sparkles, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { invokeLLM } from '@/integrations/core';
 import { useToast } from '@/hooks/use-toast';
 
 interface ChatInputProps {
   onSendMessage: (content: string, isRefined?: boolean) => void;
-  disabled?: boolean;
 }
 
-const ChatInput = ({ onSendMessage, disabled = false }: ChatInputProps) => {
+const ChatInput = ({ onSendMessage }: ChatInputProps) => {
   const [message, setMessage] = useState('');
   const [isRefining, setIsRefining] = useState(false);
   const { toast } = useToast();
 
   const handleSend = () => {
-    if (message.trim() && !disabled) {
+    if (message.trim()) {
       onSendMessage(message.trim());
       setMessage('');
     }
@@ -61,6 +60,13 @@ Return only the refined text without any additional explanation or quotes.`,
     }
   };
 
+  const handleSendRefined = () => {
+    if (message.trim()) {
+      onSendMessage(message.trim(), true);
+      setMessage('');
+    }
+  };
+
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -68,63 +74,58 @@ Return only the refined text without any additional explanation or quotes.`,
     }
   };
 
-  if (disabled) {
-    return (
-      <div className="bg-gray-800 p-4 text-center text-gray-400">
-        Select a contact to start chatting
-      </div>
-    );
-  }
-
   return (
-    <div className="bg-gray-800 p-4 border-t border-gray-700">
-      <div className="flex items-center space-x-3">
-        {/* Attachment Button */}
-        <Button variant="ghost" size="icon" className="text-gray-400 hover:text-gray-200 hover:bg-gray-700">
-          <Paperclip className="h-5 w-5" />
-        </Button>
-        
-        {/* Message Input Container */}
-        <div className="flex-1 flex items-center bg-gray-700 rounded-full border border-gray-600 px-4 py-2">
-          <Input
+    <div className="border-t border-gray-200 bg-white/50 backdrop-blur-sm p-4">
+      <div className="flex items-end space-x-3">
+        {/* Message Input */}
+        <div className="flex-1">
+          <Textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Type a message"
-            className="flex-1 border-none focus:ring-0 focus:outline-none bg-transparent text-white placeholder-gray-400"
+            placeholder="Type your message..."
+            className="min-h-[44px] max-h-32 resize-none border-gray-300 focus:border-blue-500 focus:ring-blue-500 rounded-xl"
+            rows={1}
           />
-          
-          {/* Emoji Button */}
-          <Button variant="ghost" size="icon" className="text-gray-400 hover:text-gray-200 ml-2">
-            <Smile className="h-5 w-5" />
-          </Button>
-          
+        </div>
+        
+        {/* Action Buttons */}
+        <div className="flex space-x-2">
           {/* Refine Button */}
           <Button
             onClick={handleRefine}
             disabled={!message.trim() || isRefining}
-            variant="ghost"
+            variant="outline"
             size="icon"
-            className="text-purple-400 hover:text-purple-300 hover:bg-purple-900/20 ml-1"
+            className="rounded-xl border-purple-200 hover:border-purple-400 hover:bg-purple-50 transition-all duration-200"
             title="Refine with AI"
           >
             {isRefining ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
+              <Loader2 className="h-4 w-4 animate-spin text-purple-600" />
             ) : (
-              <Sparkles className="h-4 w-4" />
+              <Sparkles className="h-4 w-4 text-purple-600" />
             )}
           </Button>
+          
+          {/* Send Button */}
+          <Button
+            onClick={handleSend}
+            disabled={!message.trim()}
+            className="rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-200"
+            size="icon"
+          >
+            <Send className="h-4 w-4" />
+          </Button>
         </div>
-        
-        {/* Send Button */}
-        <Button
-          onClick={handleSend}
-          disabled={!message.trim()}
-          className="bg-blue-600 hover:bg-blue-700 rounded-full p-3"
-          size="icon"
-        >
-          <Send className="h-5 w-5" />
-        </Button>
+      </div>
+      
+      {/* Helper Text */}
+      <div className="mt-2 flex items-center justify-between text-xs text-gray-500">
+        <span>Press Enter to send, Shift+Enter for new line</span>
+        <span className="flex items-center space-x-1">
+          <Sparkles className="h-3 w-3" />
+          <span>Click Refine to improve your text with AI</span>
+        </span>
       </div>
     </div>
   );

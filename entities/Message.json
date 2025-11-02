@@ -2,10 +2,6 @@
   "name": "Message",
   "description": "A chat message with sender information and refinement status",
   "properties": {
-    "contact_id": {
-      "type": "string",
-      "description": "The ID of the contact this message belongs to"
-    },
     "sender": {
       "type": "string",
       "description": "The name of the message sender"
@@ -25,10 +21,6 @@
     "avatar": {
       "type": "string",
       "description": "Avatar URL or initials for the sender"
-    },
-    "is_sent_by_me": {
-      "type": "boolean",
-      "description": "Whether this message was sent by the current user"
     }
   }
 }
