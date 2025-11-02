@@ -31,11 +31,11 @@ const MessageList = ({ messages }: MessageListProps) => {
     return (
       <div className="flex-1 flex items-center justify-center p-8">
         <div className="text-center">
-          <div className="w-16 h-16 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <MessageCircle className="h-8 w-8 text-blue-500" />
+          <div className="w-16 h-16 bg-[#4a9eff]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <MessageCircle className="h-8 w-8 text-[#4a9eff]" />
           </div>
-          <h3 className="text-lg font-semibold text-gray-700 mb-2">Start a conversation</h3>
-          <p className="text-gray-500 text-sm">Send your first message and try the AI refinement feature!</p>
+          <h3 className="text-lg font-semibold text-white mb-2">Start a conversation</h3>
+          <p className="text-[#999999] text-sm">Send your first message and try the AI refinement feature!</p>
         </div>
       </div>
     );
