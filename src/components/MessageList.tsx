@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { MessageCircle } from 'lucide-react';
 import MessageBubble from './MessageBubble';
 
 interface Message {
