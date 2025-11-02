@@ -1,0 +1,34 @@
+{
+  "name": "Contact",
+  "description": "A contact in the chat application",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The contact's full name"
+    },
+    "phone": {
+      "type": "string",
+      "description": "The contact's phone number"
+    },
+    "avatar": {
+      "type": "string",
+      "description": "Avatar URL or initials for the contact"
+    },
+    "last_message": {
+      "type": "string",
+      "description": "The last message sent in this chat"
+    },
+    "last_message_time": {
+      "type": "string",
+      "description": "When the last message was sent"
+    },
+    "unread_count": {
+      "type": "number",
+      "description": "Number of unread messages"
+    },
+    "is_online": {
+      "type": "boolean",
+      "description": "Whether the contact is currently online"
+    }
+  }
+}

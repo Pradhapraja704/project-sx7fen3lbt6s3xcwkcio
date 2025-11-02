@@ -1,4 +1,4 @@
-import { Sparkles } from 'lucide-react';
+import { Check, CheckCheck, Sparkles } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 interface Message {
@@ -9,6 +9,7 @@ interface Message {
   is_refined: boolean;
   avatar: string;
   created_at: string;
+  is_sent_by_me: boolean;
 }
 
 interface MessageBubbleProps {
@@ -16,49 +17,43 @@ interface MessageBubbleProps {
 }
 
 const MessageBubble = ({ message }: MessageBubbleProps) => {
-  const isCurrentUser = message.sender === 'You';
   const timeString = new Date(message.created_at).toLocaleTimeString([], { 
     hour: '2-digit', 
     minute: '2-digit' 
   });
 
   return (
-    <div className={`flex ${isCurrentUser ? 'justify-end' : 'justify-start'} animate-fade-in`}>
-      <div className={`flex items-end space-x-2 max-w-xs lg:max-w-md ${isCurrentUser ? 'flex-row-reverse space-x-reverse' : ''}`}>
-        {/* Avatar */}
-        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-          isCurrentUser 
-            ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white' 
-            : 'bg-gray-300 text-gray-700'
-        }`}>
-          {message.avatar}
-        </div>
+    <div className={`flex ${message.is_sent_by_me ? 'justify-end' : 'justify-start'} mb-2`}>
+      <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg shadow-sm ${
+        message.is_sent_by_me
+          ? 'bg-green-500 text-white rounded-br-none'
+          : 'bg-white border border-gray-200 text-gray-800 rounded-bl-none'
+      }`}>
+        {/* Refined Badge */}
+        {message.is_refined && (
+          <div className="flex items-center space-x-1 mb-1">
+            <Badge variant="secondary" className={`text-xs ${
+              message.is_sent_by_me 
+                ? 'bg-green-600 text-green-100 border-green-400' 
+                : 'bg-purple-100 text-purple-700 border-purple-200'
+            }`}>
+              <Sparkles className="h-3 w-3 mr-1" />
+              AI Refined
+            </Badge>
+          </div>
+        )}
         
-        {/* Message Content */}
-        <div className={`relative px-4 py-3 rounded-2xl shadow-sm ${
-          isCurrentUser
-            ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-br-md'
-            : 'bg-white border border-gray-200 text-gray-800 rounded-bl-md'
+        {/* Message Text */}
+        <p className="text-sm leading-relaxed break-words">{message.content}</p>
+        
+        {/* Timestamp and Status */}
+        <div className={`flex items-center justify-end space-x-1 mt-1 ${
+          message.is_sent_by_me ? 'text-green-100' : 'text-gray-500'
         }`}>
-          {/* Refined Badge */}
-          {message.is_refined && (
-            <div className="flex items-center space-x-1 mb-2">
-              <Badge variant="secondary" className="text-xs bg-white/20 text-white border-white/30">
-                <Sparkles className="h-3 w-3 mr-1" />
-                AI Refined
-              </Badge>
-            </div>
+          <span className="text-xs">{timeString}</span>
+          {message.is_sent_by_me && (
+            <CheckCheck className="h-3 w-3 text-blue-200" />
           )}
-          
-          {/* Message Text */}
-          <p className="text-sm leading-relaxed">{message.content}</p>
-          
-          {/* Timestamp */}
-          <p className={`text-xs mt-1 ${
-            isCurrentUser ? 'text-white/70' : 'text-gray-500'
-          }`}>
-            {timeString}
-          </p>
         </div>
       </div>
     </div>
