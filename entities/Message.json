@@ -1,0 +1,26 @@
+{
+  "name": "Message",
+  "description": "A chat message with sender information and refinement status",
+  "properties": {
+    "sender": {
+      "type": "string",
+      "description": "The name of the message sender"
+    },
+    "content": {
+      "type": "string",
+      "description": "The message content/text"
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "When the message was sent"
+    },
+    "is_refined": {
+      "type": "boolean",
+      "description": "Whether this message was refined by AI before sending"
+    },
+    "avatar": {
+      "type": "string",
+      "description": "Avatar URL or initials for the sender"
+    }
+  }
+}
