@@ -70,32 +70,32 @@ Return only the refined text without any additional explanation or quotes.`,
 
   if (disabled) {
     return (
-      <div className="bg-gray-100 p-4 text-center text-gray-500">
+      <div className="bg-gray-800 p-4 text-center text-gray-400">
         Select a contact to start chatting
       </div>
     );
   }
 
   return (
-    <div className="bg-gray-50 p-4 border-t border-gray-200">
+    <div className="bg-gray-800 p-4 border-t border-gray-700">
       <div className="flex items-center space-x-3">
         {/* Attachment Button */}
-        <Button variant="ghost" size="icon" className="text-gray-500 hover:text-gray-700">
+        <Button variant="ghost" size="icon" className="text-gray-400 hover:text-gray-200 hover:bg-gray-700">
           <Paperclip className="h-5 w-5" />
         </Button>
         
         {/* Message Input Container */}
-        <div className="flex-1 flex items-center bg-white rounded-full border border-gray-300 px-4 py-2">
+        <div className="flex-1 flex items-center bg-gray-700 rounded-full border border-gray-600 px-4 py-2">
           <Input
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Type a message"
-            className="flex-1 border-none focus:ring-0 focus:outline-none bg-transparent"
+            className="flex-1 border-none focus:ring-0 focus:outline-none bg-transparent text-white placeholder-gray-400"
           />
           
           {/* Emoji Button */}
-          <Button variant="ghost" size="icon" className="text-gray-500 hover:text-gray-700 ml-2">
+          <Button variant="ghost" size="icon" className="text-gray-400 hover:text-gray-200 ml-2">
             <Smile className="h-5 w-5" />
           </Button>
           
@@ -105,7 +105,7 @@ Return only the refined text without any additional explanation or quotes.`,
             disabled={!message.trim() || isRefining}
             variant="ghost"
             size="icon"
-            className="text-purple-600 hover:text-purple-700 hover:bg-purple-50 ml-1"
+            className="text-purple-400 hover:text-purple-300 hover:bg-purple-900/20 ml-1"
             title="Refine with AI"
           >
             {isRefining ? (
@@ -120,7 +120,7 @@ Return only the refined text without any additional explanation or quotes.`,
         <Button
           onClick={handleSend}
           disabled={!message.trim()}
-          className="bg-green-600 hover:bg-green-700 rounded-full p-3"
+          className="bg-blue-600 hover:bg-blue-700 rounded-full p-3"
           size="icon"
         >
           <Send className="h-5 w-5" />

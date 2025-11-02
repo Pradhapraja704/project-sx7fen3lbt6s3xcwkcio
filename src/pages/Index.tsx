@@ -69,7 +69,7 @@ const Index = () => {
   };
 
   return (
-    <div className="h-screen bg-gray-100 flex">
+    <div className="h-screen bg-gray-900 flex">
       {/* Contacts Sidebar */}
       <ContactsSidebar
         contacts={contacts}
@@ -78,14 +78,14 @@ const Index = () => {
       />
       
       {/* Chat Area */}
-      <div className="flex-1 flex flex-col bg-gray-50">
+      <div className="flex-1 flex flex-col bg-gray-800">
         {/* Chat Header */}
         <ChatHeader contact={selectedContact} />
         
         {/* Messages Area */}
         <div className="flex-1 flex flex-col" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f0f0f0' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundColor: '#e5ddd5'
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23374151' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundColor: '#1f2937'
         }}>
           {selectedContactId ? (
             <>
@@ -94,11 +94,11 @@ const Index = () => {
             </>
           ) : (
             <div className="flex-1 flex items-center justify-center">
-              <div className="text-center text-gray-500">
-                <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="text-center text-gray-400">
+                <div className="w-32 h-32 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-6">
                   <div className="text-6xl">💬</div>
                 </div>
-                <h2 className="text-2xl font-light mb-2">LexiFix</h2>
+                <h2 className="text-2xl font-light mb-2 text-white">LexiFix</h2>
                 <p className="text-sm max-w-md">
                   Send and receive messages with AI-powered text refinement.<br />
                   Improve your communication with intelligent grammar and style suggestions.
