@@ -98,10 +98,10 @@ const Index = () => {
                 <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
                   <div className="text-6xl">💬</div>
                 </div>
-                <h2 className="text-2xl font-light mb-2">WhatsApp Web</h2>
+                <h2 className="text-2xl font-light mb-2">LexiFix</h2>
                 <p className="text-sm max-w-md">
-                  Send and receive messages without keeping your phone online.<br />
-                  Use WhatsApp on up to 4 linked devices and 1 phone at the same time.
+                  Send and receive messages with AI-powered text refinement.<br />
+                  Improve your communication with intelligent grammar and style suggestions.
                 </p>
               </div>
             </div>

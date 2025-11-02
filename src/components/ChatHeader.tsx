@@ -23,7 +23,7 @@ const ChatHeader = ({ contact, onBack }: ChatHeaderProps) => {
             <div className="h-6 w-6" />
           </div>
           <div>
-            <h1 className="text-xl font-bold">WhatsApp</h1>
+            <h1 className="text-xl font-bold">LexiFix</h1>
             <p className="text-sm text-green-100">Select a chat to start messaging</p>
           </div>
         </div>
