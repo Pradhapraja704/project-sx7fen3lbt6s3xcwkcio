@@ -6,7 +6,7 @@ const baseUrl = import.meta.env.VITE_SUPERDEV_BASE_URL || 'https://demo.superdev
 
 export const superdevClient = createSuperdevClient({
   appId: appId,
-  requiresAuth: true,
+  requiresAuth: false, // Temporarily disabled for development
   baseUrl: baseUrl,
   loginUrl: `${baseUrl}/auth/app-login?app_id=${appId}`,
 });
